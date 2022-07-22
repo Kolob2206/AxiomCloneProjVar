@@ -10,14 +10,15 @@ step "Deploy a Package" {
             Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles = "True"
             Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings = "True"
             Octopus.Action.Package.DownloadOnTentacle = "False"
-            Octopus.Action.Package.FeedId = "#{feedvar}"
+            Octopus.Action.Package.FeedId = "artifactory support sandbox"
             Octopus.Action.Package.PackageId = "BungieNet.Online.Common"
+            Octopus.Action.RunOnServer = "false"
         }
         worker_pool_variable = ""
 
         packages {
             acquisition_location = "Server"
-            feed = "#{feedvar}"
+            feed = "artifactory support sandbox"
             package_id = "BungieNet.Online.Common"
             properties = {
                 SelectionMode = "immediate"
