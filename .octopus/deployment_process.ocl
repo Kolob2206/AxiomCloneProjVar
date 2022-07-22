@@ -1,0 +1,27 @@
+step "Deploy a Package" {
+    properties = {
+        Octopus.Action.TargetRoles = "cloud"
+    }
+
+    action {
+        action_type = "Octopus.TentaclePackage"
+        properties = {
+            Octopus.Action.EnabledFeatures = ",Octopus.Features.ConfigurationTransforms,Octopus.Features.ConfigurationVariables"
+            Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles = "True"
+            Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings = "True"
+            Octopus.Action.Package.DownloadOnTentacle = "False"
+            Octopus.Action.Package.FeedId = "#{feedvar}"
+            Octopus.Action.Package.PackageId = "BungieNet.Online.Common"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "#{feedvar}"
+            package_id = "BungieNet.Online.Common"
+            properties = {
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
